@@ -23,6 +23,7 @@ import GoogleLogin from "react-google-login";
 import styles from "assets/jss/material-kit-react/views/loginPage.js";
 
 import image from "assets/img/bg7.jpg";
+import InputMask from "react-input-mask";
 
 const useStyles = makeStyles(styles);
 
@@ -46,6 +47,11 @@ export default function LoginPage(props) {
 
   const [url, setUrl] = useState("");
   const [val, setValue] = useState("");
+  const [emailError, setEmailError] = useState("");
+  const [passwordLength, setpasswordLength] = useState(false);
+  const [containsNumbers, setcontainsNumbers] = useState(false);
+  const [isUpperCase, setisUpperCase] = useState(false);
+  const [containsSymbols, setcontainsSymbols] = useState(false);
 
   const responseGoogle = (response) => {
     setName(response.profileObj.name);
@@ -54,14 +60,39 @@ export default function LoginPage(props) {
     console.log(response);
   };
 
+  const validate = () => {
+    console.log("inValidate");
+    let emailError = "";
+    if (!userName.includes("@")) {
+      emailError = "invalid email";
+      console.log("inValidat");
+    }
+
+    if (emailError) {
+      setEmailError({ emailError });
+      return false;
+      console.log("inValid");
+    }
+    return true;
+  };
+
   const logName = () => {
-    fetch("http://localhost:3001/api/users/create", {
-      method: "post",
-      headers: {
-        "content-type": "application/x-www-form-urlencoded; charset=utf-8",
-      },
-      body: `number=${number}&username=${userName}&pass=${pass}`,
-    });
+    const isValid = validate();
+    if (isValid) {
+      console.log({ userName });
+      fetch("http://localhost:3001/api/users/create", {
+        method: "post",
+        headers: {
+          "content-type": "application/x-www-form-urlencoded; charset=utf-8",
+        },
+        body: `number=${number}&username=${userName}&pass=${pass}`,
+      });
+      var x = document.getElementById("myDIV");
+      x.style.display = "none";
+    } else {
+      var x = document.getElementById("myDIV");
+      x.style.display = "block";
+    }
   };
   const handleUserNameInput = (e) => {
     setUsername(e.target.value);
@@ -171,6 +202,7 @@ export default function LoginPage(props) {
                       inputProps={{
                         type: "email",
                         onChange: (e) => setUsername(e.target.value),
+
                         endAdornment: (
                           <InputAdornment position="end">
                             <Email className={classes.inputIconsColor} />
@@ -178,6 +210,10 @@ export default function LoginPage(props) {
                         ),
                       }}
                     />
+
+                    <div id="myDIV" style={{ display: "none" }}>
+                      Invalid Email
+                    </div>
                     <CustomInput
                       labelText="Password"
                       id="pass"
