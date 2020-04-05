@@ -2,6 +2,7 @@ import React from "react";
 // @material-ui/core components
 import { makeStyles } from "@material-ui/core/styles";
 import Datetime from "react-datetime";
+import People from "@material-ui/icons/People";
 // @material-ui/icons
 import Face from "@material-ui/icons/Face";
 import Chat from "@material-ui/icons/Chat";
@@ -15,6 +16,7 @@ import styles from "assets/jss/material-kit-react/views/componentsSections/tabsS
 import Button from "components/CustomButtons/Button.js";
 import InputLabel from "@material-ui/core/InputLabel";
 import FormControl from "@material-ui/core/FormControl";
+
 import InputMask from "react-input-mask";
 
 import { Form, FormGroup, Label, Input } from "reactstrap";
@@ -128,23 +130,6 @@ export default function SectionTabs() {
                           <GridItem xs={12} sm={4} md={4} lg={3}>
                             <div className="form-group">
                               <InputMask
-                                mask="  0399     -   9999999"
-                                placeholder="Ph no."
-                                style={{
-                                  labelText: "CNIC",
-                                  borderTop: "none",
-                                  borderLeft: "none",
-                                  borderRight: "none",
-                                  width: "100%",
-                                  paddingTop: "45px",
-                                }}
-                              ></InputMask>
-                            </div>
-                          </GridItem>
-
-                          <GridItem xs={12} sm={4} md={4} lg={3}>
-                            <div className="form-group">
-                              <InputMask
                                 mask=" 0399     -   9999999"
                                 placeholder="Whatsapp No"
                                 style={{
@@ -152,7 +137,7 @@ export default function SectionTabs() {
                                   borderTop: "none",
                                   borderLeft: "none",
                                   borderRight: "none",
-                                  width: "100%",
+                                  width: "95%",
                                   paddingTop: "45px",
                                 }}
                               ></InputMask>
@@ -162,13 +147,20 @@ export default function SectionTabs() {
 
                         <GridContainer className="inputs">
                           <GridItem xs={12} sm={4} md={4} lg={3}>
-                            <CustomInput
-                              labelText="Email"
-                              id="float"
-                              formControlProps={{
-                                fullWidth: true,
-                              }}
-                            />
+                            <div className="form-group">
+                              <InputMask
+                                mask=" 0399     -   9999999"
+                                placeholder="Ph No"
+                                style={{
+                                  labelText: "CNIC",
+                                  borderTop: "none",
+                                  borderLeft: "none",
+                                  borderRight: "none",
+                                  width: "95%",
+                                  paddingTop: "45px",
+                                }}
+                              ></InputMask>
+                            </div>
                           </GridItem>
 
                           <GridItem xs={12} sm={4} md={4} lg={3}>
@@ -259,14 +251,14 @@ export default function SectionTabs() {
                           <GridItem xs={12} sm={4} md={4} lg={3}>
                             <div className="form-group">
                               <InputMask
-                                mask=" 99999        -  9999999       -   9"
+                                mask=" 99999     -   9999999    -   9"
                                 placeholder="CNIC"
                                 style={{
                                   labelText: "CNIC",
                                   borderTop: "none",
                                   borderLeft: "none",
                                   borderRight: "none",
-                                  width: "100%",
+                                  width: "95%",
                                   paddingTop: "45px",
                                 }}
                               ></InputMask>

@@ -2,6 +2,8 @@ import React, { useState } from "react";
 // @material-ui/core components
 import { makeStyles } from "@material-ui/core/styles";
 import InputAdornment from "@material-ui/core/InputAdornment";
+
+import TextField from "@material-ui/core/TextField";
 import Icon from "@material-ui/core/Icon";
 // @material-ui/icons
 import Email from "@material-ui/icons/Email";
@@ -56,7 +58,6 @@ export default function LoginPage(props) {
     setUrl(response.profileObj.imageUrl);
     console.log(response);
   };
-
   const validate = () => {
     console.log("inValidate");
     let emailError = "";
@@ -100,6 +101,7 @@ export default function LoginPage(props) {
         },
         body: `number=${number}&username=${userName}&pass=${pass}`,
       });
+      window.location = "/";
     }
     if (isValidmail) {
       var x = document.getElementById("myDIVmail");
@@ -116,12 +118,6 @@ export default function LoginPage(props) {
       var x = document.getElementById("myDIVpass");
       x.style.display = "block";
     }
-  };
-  const handleUserNameInput = (e) => {
-    setUsername(e.target.value);
-  };
-  const handleFirstNameInput = (e) => {
-    setFirstname(e.target.value);
   };
   const handleLastNameInput = (e) => {
     setLastname(e.target.value);
@@ -186,7 +182,7 @@ export default function LoginPage(props) {
                       />
                     </div>
                   </CardHeader>
-                  <p className={classes.divider}>Or Be Classical</p>
+                  <p className={classes.divider}>Or Type here to Registered</p>
                   <CardBody>
                     {/* <input
       type="text"
@@ -204,7 +200,7 @@ export default function LoginPage(props) {
                           borderTop: "none",
                           borderLeft: "none",
                           borderRight: "none",
-                          width: "95%",
+                          width: "85%",
                           paddingTop: "45px",
                         }}
                       ></InputMask>
@@ -222,7 +218,6 @@ export default function LoginPage(props) {
                       inputProps={{
                         type: "email",
                         onChange: (e) => setUsername(e.target.value),
-
                         endAdornment: (
                           <InputAdornment position="end">
                             <Email className={classes.inputIconsColor} />
@@ -230,7 +225,6 @@ export default function LoginPage(props) {
                         ),
                       }}
                     />
-
                     <div id="myDIVmail" style={{ display: "none" }}>
                       Invalid Email,missing '@' sign
                     </div>
