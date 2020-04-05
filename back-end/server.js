@@ -38,6 +38,9 @@ router.post('/users/create', (req, res) => {
   }, (err, result) => {
     if(err) throw err;
     console.log('user created');
+   // res.render('index', {  });
+
+
   });
 });
 

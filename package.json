@@ -22,7 +22,6 @@
     "react-datetime": "2.16.3",
     "react-dom": "^16.13.1",
     "react-google-login": "^5.1.2",
-    "react-input-mask": "^2.0.4",
     "react-redux": "^7.2.0",
     "react-router-dom": "5.0.1",
     "react-scripts": "3.1.0",
