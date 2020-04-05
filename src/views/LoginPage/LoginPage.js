@@ -48,10 +48,7 @@ export default function LoginPage(props) {
   const [url, setUrl] = useState("");
   const [val, setValue] = useState("");
   const [emailError, setEmailError] = useState("");
-  const [passwordLength, setpasswordLength] = useState(false);
-  const [containsNumbers, setcontainsNumbers] = useState(false);
-  const [isUpperCase, setisUpperCase] = useState(false);
-  const [containsSymbols, setcontainsSymbols] = useState(false);
+  const [passError, setPassError] = useState("");
 
   const responseGoogle = (response) => {
     setName(response.profileObj.name);
@@ -75,10 +72,26 @@ export default function LoginPage(props) {
     }
     return true;
   };
+  const validatePass = () => {
+    console.log("inValidate ");
+    let passError = "";
+    if (pass.length < 7) {
+      passError = "invalid Password";
+      console.log("inValidat pass");
+    }
+
+    if (passError) {
+      setPassError({ passError });
+      return false;
+      console.log("inValid pass");
+    }
+    return true;
+  };
 
   const logName = () => {
-    const isValid = validate();
-    if (isValid) {
+    let isValidmail = validate();
+    let isValidpass = validatePass();
+    if (isValidmail && isValidpass) {
       console.log({ userName });
       fetch("http://localhost:3001/api/users/create", {
         method: "post",
@@ -87,10 +100,20 @@ export default function LoginPage(props) {
         },
         body: `number=${number}&username=${userName}&pass=${pass}`,
       });
-      var x = document.getElementById("myDIV");
+    }
+    if (isValidmail) {
+      var x = document.getElementById("myDIVmail");
       x.style.display = "none";
     } else {
-      var x = document.getElementById("myDIV");
+      var x = document.getElementById("myDIVmail");
+      x.style.display = "block";
+    }
+
+    if (isValidpass) {
+      var x = document.getElementById("myDIVpass");
+      x.style.display = "none";
+    } else {
+      var x = document.getElementById("myDIVpass");
       x.style.display = "block";
     }
   };
@@ -172,24 +195,21 @@ export default function LoginPage(props) {
       placeholder="username..."
     /> */}
 
-                    <CustomInput
-                      labelText="Whatsapp Number"
-                      id="first"
-                      // onChange={(e) => setUsername(e.target.value)}
-
-                      formControlProps={{
-                        fullWidth: true,
-                      }}
-                      inputProps={{
-                        onChange: (e) => setnumber(e.target.value),
-                        type: "text",
-                        endAdornment: (
-                          <InputAdornment position="end">
-                            <People className={classes.inputIconsColor} />
-                          </InputAdornment>
-                        ),
-                      }}
-                    />
+                    <div className="form-group">
+                      <InputMask
+                        mask=" 0399     -   9999999"
+                        placeholder="Whatsapp No"
+                        style={{
+                          labelText: "CNIC",
+                          borderTop: "none",
+                          borderLeft: "none",
+                          borderRight: "none",
+                          width: "95%",
+                          paddingTop: "45px",
+                        }}
+                      ></InputMask>
+                      <People className={classes.inputIconsColor} />
+                    </div>
 
                     <CustomInput
                       labelText="Email..."
@@ -211,8 +231,8 @@ export default function LoginPage(props) {
                       }}
                     />
 
-                    <div id="myDIV" style={{ display: "none" }}>
-                      Invalid Email
+                    <div id="myDIVmail" style={{ display: "none" }}>
+                      Invalid Email,missing '@' sign
                     </div>
                     <CustomInput
                       labelText="Password"
@@ -235,6 +255,9 @@ export default function LoginPage(props) {
                         autoComplete: "off",
                       }}
                     />
+                    <div id="myDIVpass" style={{ display: "none" }}>
+                      Invalid Password, Password must be greater than 7 digits
+                    </div>
                   </CardBody>
                   <CardFooter className={classes.cardFooter}>
                     <Button simple color="primary" size="lg" onClick={logName}>
