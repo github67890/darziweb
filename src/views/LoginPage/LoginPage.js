@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import InputAdornment from "@material-ui/core/InputAdornment";
 
-import TextField from '@material-ui/core/TextField';
+import TextField from "@material-ui/core/TextField";
 import Icon from "@material-ui/core/Icon";
 // @material-ui/icons
 import Email from "@material-ui/icons/Email";
@@ -25,6 +25,7 @@ import GoogleLogin from "react-google-login";
 import styles from "assets/jss/material-kit-react/views/loginPage.js";
 
 import image from "assets/img/bg7.jpg";
+import InputMask from "react-input-mask";
 
 const useStyles = makeStyles(styles);
 
@@ -48,6 +49,8 @@ export default function LoginPage(props) {
 
   const [url, setUrl] = useState("");
   const [val, setValue] = useState("");
+  const [emailError, setEmailError] = useState("");
+  const [passError, setPassError] = useState("");
 
   const responseGoogle = (response) => {
     setName(response.profileObj.name);
@@ -55,22 +58,67 @@ export default function LoginPage(props) {
     setUrl(response.profileObj.imageUrl);
     console.log(response);
   };
+  const validate = () => {
+    console.log("inValidate");
+    let emailError = "";
+    if (!userName.includes("@")) {
+      emailError = "invalid email";
+      console.log("inValidat");
+    }
+
+    if (emailError) {
+      setEmailError({ emailError });
+      return false;
+      console.log("inValid");
+    }
+    return true;
+  };
+  const validatePass = () => {
+    console.log("inValidate ");
+    let passError = "";
+    if (pass.length < 7) {
+      passError = "invalid Password";
+      console.log("inValidat pass");
+    }
+
+    if (passError) {
+      setPassError({ passError });
+      return false;
+      console.log("inValid pass");
+    }
+    return true;
+  };
 
   const logName = () => {
-    fetch("http://localhost:3001/api/users/create", {
-      method: "post",
-      headers: {
-        "content-type": "application/x-www-form-urlencoded; charset=utf-8",
-      },
-      body: `number=${number}&username=${userName}&pass=${pass}`,
-    });
-    window.location = '/';
-  };
-  const handleUserNameInput = (e) => {
-    setUsername(e.target.value);
-  };
-  const handleFirstNameInput = (e) => {
-    setFirstname(e.target.value);
+    let isValidmail = validate();
+    let isValidpass = validatePass();
+    if (isValidmail && isValidpass) {
+      console.log({ userName });
+      fetch("http://localhost:3001/api/users/create", {
+        method: "post",
+        headers: {
+          "content-type": "application/x-www-form-urlencoded; charset=utf-8",
+        },
+        body: `number=${number}&username=${userName}&pass=${pass}`,
+      });
+      alert('congratulations your account created thanks.Now we are redirecting you to your account for more inforamtion');
+      window.location = "/form";
+    }
+    if (isValidmail) {
+      var x = document.getElementById("myDIVmail");
+      x.style.display = "none";
+    } else {
+      var x = document.getElementById("myDIVmail");
+      x.style.display = "block";
+    }
+
+    if (isValidpass) {
+      var x = document.getElementById("myDIVpass");
+      x.style.display = "none";
+    } else {
+      var x = document.getElementById("myDIVpass");
+      x.style.display = "block";
+    }
   };
   const handleLastNameInput = (e) => {
     setLastname(e.target.value);
@@ -137,33 +185,26 @@ export default function LoginPage(props) {
                   </CardHeader>
                   <p className={classes.divider}>Or Type here to Registered</p>
                   <CardBody>
-                    {/* <input
-      type="text"
-      onChange={handleUserNameInput}
-      value={userName}
-      placeholder="username..."
-    /> */}
+      
 
-                    <CustomInput
-                    
-                      labelText="Whatsapp Number"
-                      id="first"
-                      required
-                      // onChange={(e) => setUsername(e.target.value)}
-
-                      formControlProps={{
-                        fullWidth: true,
-                      }}
-                      inputProps={{
-                        onChange: (e) => setnumber(e.target.value),
-                        type: "text",
-                        endAdornment: (
-                          <InputAdornment position="end">
-                            <People className={classes.inputIconsColor} />
-                          </InputAdornment>
-                        ),
-                      }}
-                    />
+                    <div className="form-group">
+                      <InputMask
+                        mask=" 0399-9999999"
+                        placeholder="Whatsapp No"
+                      
+                        onChange={handlenumber}
+                        style={{
+                          labelText: "CNIC",
+                          borderTop: "none",
+                          borderLeft: "none",
+                          borderRight: "none",
+                          width: "85%",
+                          paddingTop: "45px",
+                        }}
+                     
+                      ></InputMask>
+                      <People className={classes.inputIconsColor} />
+                    </div>
 
                     <CustomInput
                       labelText="Email..."
@@ -183,6 +224,9 @@ export default function LoginPage(props) {
                         ),
                       }}
                     />
+                    <div id="myDIVmail" style={{ display: "none",color:"red" }}>
+                      Invalid Email,missing '@' sign
+                    </div>
                     <CustomInput
                       labelText="Password"
                       id="pass"
@@ -204,6 +248,9 @@ export default function LoginPage(props) {
                         autoComplete: "off",
                       }}
                     />
+                    <div id="myDIVpass" style={{ display: "none" ,color:"red"}}>
+                      Invalid Password, Password must be greater than 7 digits
+                    </div>
                   </CardBody>
                   <CardFooter className={classes.cardFooter}>
                     <Button simple color="primary" size="lg" onClick={logName}>

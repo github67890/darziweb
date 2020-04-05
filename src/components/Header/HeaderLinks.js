@@ -32,20 +32,16 @@ export default function HeaderLinks(props) {
           buttonText="Components"
           buttonProps={{
             className: classes.navLink,
-            color: "transparent"
+            color: "transparent",
           }}
           buttonIcon={Apps}
           dropdownList={[
             <Link to="/" className={classes.dropdownLink}>
               All components
             </Link>,
-            <a
-              href=""
-              target="_blank"
-              className={classes.dropdownLink}
-            >
+            <a href="" target="_blank" className={classes.dropdownLink}>
               Documentation
-            </a>
+            </a>,
           ]}
         />
       </ListItem>
@@ -53,13 +49,41 @@ export default function HeaderLinks(props) {
         <Button
           href="/login-page"
           color="transparent"
-        
           className={classes.navLink}
         >
-          <CloudDownload className={classes.icons} />  Its Link
+          About us
         </Button>
-
       </ListItem>
+      <ListItem className={classes.listItem}>
+        <Button
+          href="/login-page"
+          color="transparent"
+          className={classes.navLink}
+        >
+          Track Your Order
+        </Button>
+      </ListItem>
+
+      <ListItem className={classes.listItem}>
+        <Button
+          href="/login-page"
+          color="transparent"
+          className={classes.navLink}
+        >
+          Request a Call Back
+        </Button>
+      </ListItem>
+
+      <ListItem className={classes.listItem}>
+        <Button
+          href="/login-page"
+          color="transparent"
+          className={classes.navLink}
+        >
+          Join us
+        </Button>
+      </ListItem>
+
       <ListItem className={classes.listItem}>
         {/*<Tooltip title="Delete">
           <IconButton aria-label="Delete">
