@@ -25,7 +25,7 @@ ReactDOM.render(
       <Route path="/profile-page" component={ProfilePage} />
       <Route path="/login-page" component={LoginPage} />
       {/* <Route path="/HomePage" component={HomePage} /> */}
-      <Route path="/form" component={Components} />
+       <Route path="/form" component={Components} />
       <Route path="/" component={HomePage} />
      
   
