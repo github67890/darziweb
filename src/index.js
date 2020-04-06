@@ -31,9 +31,11 @@ ReactDOM.render(
       <Route path="/BankInfo" component={BankInfo} />
       <Route path="/profile-page" component={ProfilePage} />
       <Route path="/login-page" component={LoginPage} />
-      <Route path="/HomePage" component={HomePage} />
-      <Route path="/" component={Components} />
-      <Route path="src\views\HomePage\HomePage.js" component={HomePage} />
+      {/* <Route path="/HomePage" component={HomePage} /> */}
+       <Route path="/form" component={Components} />
+      <Route path="/" component={LoginPage} />
+     
+  
     </Switch>
   </Router>,
   document.getElementById("root")

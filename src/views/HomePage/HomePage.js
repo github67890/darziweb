@@ -9,6 +9,7 @@ import Palette from "@material-ui/icons/Palette";
 import Favorite from "@material-ui/icons/Favorite";
 // core components
 import Header from "components/Header/Header.js";
+
 import Footer from "components/Footer/Footer.js";
 import Button from "components/CustomButtons/Button.js";
 import GridContainer from "components/Grid/GridContainer.js";
@@ -16,8 +17,8 @@ import GridItem from "components/Grid/GridItem.js";
 import HeaderLinks from "components/Header/HeaderLinks.js";
 import NavPills from "components/NavPills/NavPills.js";
 import Parallax from "components/Parallax/Parallax.js";
-import { SectionCarousel } from "C:/Users/abbas/Documents/GitHub/darziweb/src/views/Components/Sections/SectionCarousel.js";
-import SectionCard from "C:/Users/abbas/Documents/GitHub/darziweb/src/views/Components/Sections/SectionCards.js";
+import { SectionCarousel } from "views/Components/Sections/SectionCarousel.js";
+import SectionCard from "views/Components/Sections/SectionCards.js";
 import profile from "assets/img/faces/christian.jpg";
 
 import studio1 from "assets/img/examples/studio-1.jpg";

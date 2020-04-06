@@ -101,7 +101,8 @@ export default function LoginPage(props) {
         },
         body: `number=${number}&username=${userName}&pass=${pass}`,
       });
-      window.location = "/";
+      alert('congratulations your account created thanks.Now we are redirecting you to your account for more inforamtion');
+      window.location = "/form";
     }
     if (isValidmail) {
       var x = document.getElementById("myDIVmail");
@@ -184,17 +185,14 @@ export default function LoginPage(props) {
                   </CardHeader>
                   <p className={classes.divider}>Or Type here to Registered</p>
                   <CardBody>
-                    {/* <input
-      type="text"
-      onChange={handleUserNameInput}
-      value={userName}
-      placeholder="username..."
-    /> */}
+      
 
                     <div className="form-group">
                       <InputMask
-                        mask=" 0399     -   9999999"
+                        mask=" 0399-9999999"
                         placeholder="Whatsapp No"
+                      
+                        onChange={handlenumber}
                         style={{
                           labelText: "CNIC",
                           borderTop: "none",
@@ -203,6 +201,7 @@ export default function LoginPage(props) {
                           width: "85%",
                           paddingTop: "45px",
                         }}
+                     
                       ></InputMask>
                       <People className={classes.inputIconsColor} />
                     </div>
@@ -225,7 +224,7 @@ export default function LoginPage(props) {
                         ),
                       }}
                     />
-                    <div id="myDIVmail" style={{ display: "none" }}>
+                    <div id="myDIVmail" style={{ display: "none",color:"red" }}>
                       Invalid Email,missing '@' sign
                     </div>
                     <CustomInput
@@ -249,7 +248,7 @@ export default function LoginPage(props) {
                         autoComplete: "off",
                       }}
                     />
-                    <div id="myDIVpass" style={{ display: "none" }}>
+                    <div id="myDIVpass" style={{ display: "none" ,color:"red"}}>
                       Invalid Password, Password must be greater than 7 digits
                     </div>
                   </CardBody>
