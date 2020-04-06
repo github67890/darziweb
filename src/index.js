@@ -13,6 +13,10 @@ import LandingPage from "views/LandingPage/LandingPage.js";
 import ProfilePage from "views/ProfilePage/ProfilePage.js";
 import LoginPage from "views/LoginPage/LoginPage.js";
 import HomePage from "views/HomePage/HomePage.js";
+import PersonInfo from "C:/Users/abbas/Documents/GitHub/darziweb/src/views/LandingPage/Sections/PersonInfo.js";
+import Upload from "C:/Users/abbas/Documents/GitHub/darziweb/src/views/LandingPage/Sections/Upload.js";
+import BankInfo from "C:/Users/abbas/Documents/GitHub/darziweb/src/views/LandingPage/Sections/BankInfo.js";
+import { Person } from "@material-ui/icons";
 
 var hist = createBrowserHistory();
 
@@ -22,6 +26,9 @@ ReactDOM.render(
       <Route path="/landing-page" component={LandingPage} />
 
       <Route path="/landing-page" component={LandingPage} />
+      <Route path="/PersonInfo" component={PersonInfo} />
+      <Route path="/Upload" component={Upload} />
+      <Route path="/BankInfo" component={BankInfo} />
       <Route path="/profile-page" component={ProfilePage} />
       <Route path="/login-page" component={LoginPage} />
       <Route path="/HomePage" component={HomePage} />
