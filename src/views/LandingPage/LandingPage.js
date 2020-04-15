@@ -9,24 +9,32 @@ import { makeStyles } from "@material-ui/core/styles";
 // core components
 
 import {
-  Card, CardImg, CardText, CardBody, CardLink,
-  CardTitle, CardSubtitle
-} from 'reactstrap';
-import Header from "components/Header/Header.js";
+  Card,
+  CardImg,
+  CardText,
+  CardBody,
+  CardLink,
+  CardTitle,
+  CardSubtitle,
+} from "reactstrap";
+import Header from "components/Header/LoginHeader.js";
 import Footer from "components/Footer/Footer.js";
 import GridContainer from "components/Grid/GridContainer.js";
 import GridItem from "components/Grid/GridItem.js";
 import Button from "components/CustomButtons/Button.js";
-import HeaderLinks from "components/Header/HeaderLinks.js";
+import HeaderLinks from "components/Header/LoginHeaderLinks.js";
 import Parallax from "components/Parallax/Parallax.js";
 
 import styles from "assets/jss/material-kit-react/views/landingPage.js";
 
 // Sections for this page
 import Sectiontabs from "views/Components/Sections/SectionTabs.js";
-import ProductSection from "./Sections/ProductSection.js";
+import PersonInfo from "./Sections/PersonInfo.js";
+import Upload from "./Sections/Upload.js";
+import BankInfo from "./Sections/BankInfo.js";
 import TeamSection from "./Sections/TeamSection.js";
 import WorkSection from "./Sections/WorkSection.js";
+import RegNavBar from "./Sections/RegNavBar.js";
 
 const dashboardRoutes = [];
 
@@ -45,12 +53,12 @@ export default function LandingPage(props) {
         fixed
         changeColorOnScroll={{
           height: 400,
-          color: "white"
+          color: "white",
         }}
         {...rest}
       />
       <br></br>
-       <Parallax filter image={require("assets/img/main3.jpg")}>
+      <Parallax filter image={require("assets/img/main3.jpg")}>
         <div className={classes.container}>
           <GridContainer>
             <GridItem xs={12} sm={12} md={6}>
@@ -75,21 +83,10 @@ export default function LandingPage(props) {
             </GridItem>
           </GridContainer>
         </div>
-      </Parallax> 
+      </Parallax>
       <div className={classNames(classes.main, classes.mainRaised)}>
         <div className={classes.container}>
-
-
-          <Sectiontabs />
-         
-
-          <div>
-      
-    </div>
-
-
-
-         
+          <RegNavBar />
         </div>
       </div>
       <Footer />
